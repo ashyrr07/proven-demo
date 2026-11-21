@@ -64,5 +64,33 @@ a{color:#35204F}a:hover{color:#1E1030}
 </div>
 </div>
 
+<script>
+(function () {
+  var box, timer;
+  function toast(text) {
+    if (!box) {
+      box = document.createElement('div');
+      box.setAttribute('role', 'status');
+      box.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);max-width:320px;padding:12px 18px;border-radius:14px;background:#1B0E2B;color:#fff;font:600 14px Figtree,system-ui,sans-serif;text-align:center;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,.35);transition:opacity .2s';
+      document.body.appendChild(box);
+    }
+    box.textContent = text;
+    box.style.opacity = '1';
+    clearTimeout(timer);
+    timer = setTimeout(function () { box.style.opacity = '0'; }, 1800);
+  }
+  document.addEventListener('click', function (ev) {
+    var el = ev.target.closest('a,button');
+    if (!el || el.dataset.live) return;
+    if (el.tagName === 'A') {
+      var href = el.getAttribute('href') || '';
+      if (href.charAt(0) !== '#') return;
+      if (href.length > 1 && document.getElementById(href.slice(1))) return;
+      ev.preventDefault();
+    }
+    toast('Not part of this prototype yet');
+  });
+})();
+</script>
 </body>
 </html>

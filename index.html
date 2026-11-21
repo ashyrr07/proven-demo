@@ -81,7 +81,7 @@ footer{padding:64px 0 48px;color:var(--muted);font-size:15px}
 <li><a href="customer-location.html">Allow location</a></li>
 <li><a href="customer-address.html">Address on the map</a></li>
 <li><a href="customer-home.html">Home</a></li>
-<li><a href="customer-request.html">Request a service</a></li>
+<li><a href="customer-request-car-detailing.html">Request a service</a></li>
 <li><a href="customer-matching.html">Finding a pro</a></li>
 <li><a href="customer-status.html">Order status and payment</a></li>
 </ol>
@@ -130,6 +130,7 @@ footer{padding:64px 0 48px;color:var(--muted);font-size:15px}
     function mark() {
       var here;
       try { here = frame.contentWindow.location.pathname.split('/').pop(); } catch (e) { return; }
+      if (here.indexOf('customer-request-') === 0) here = 'customer-request-car-detailing.html';
       links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === here); });
     }
     frame.addEventListener('load', mark);

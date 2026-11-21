@@ -43,7 +43,7 @@ a{color:#35204F}a:hover{color:#1E1030}
 <a class="l" href="#how">How it works</a>
 <a class="l" href="#services">Services</a>
 <a class="l" href="#partner">Partner with us</a>
-<a class="btn ink" href="#book" style="min-height: 48px; padding: 0 22px">Book a service</a>
+<a class="btn ink" href="customer-home.html" style="min-height: 48px; padding: 0 22px">Book a service</a>
 </nav>
 </header>
 <section class="wrap" style="padding-top: 48px; padding-bottom: 88px; display: flex; flex-wrap: wrap; align-items: center; gap: 40px">
@@ -51,8 +51,8 @@ a{color:#35204F}a:hover{color:#1E1030}
 <h1 class="h" style="font-size: clamp(3rem, 6.4vw, 5.6rem)">Only proven pros come to your door.</h1>
 <p style="margin: 0; font-size: 1.25rem; max-width: 34rem">Cleaning, car detailing, assembly, lawn care and repairs in Dallas–Fort Worth. Every pro passes a drug screen and a background check before the first job.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 14px">
-<a class="btn ink" href="#book">Book a service</a>
-<a class="btn plain" href="#app">Get the app</a>
+<a class="btn ink" href="customer-home.html">Book a service</a>
+<a class="btn plain" href="customer-welcome.html">Get the app</a>
 </div>
 <span style="font-size: 15px; font-weight: 600">Pay by card after the job is done.</span>
 </div>
@@ -101,14 +101,14 @@ a{color:#35204F}a:hover{color:#1E1030}
 <section id="services" class="wrap" style="padding-top: 48px; padding-bottom: 72px; display: flex; flex-direction: column; gap: 26px">
 <h2 class="h" style="font-size: clamp(2.2rem, 4vw, 3.4rem)">One app for the whole to-do list.</h2>
 <div style="display: flex; flex-wrap: wrap; gap: 14px">
-<a class="svc" href="#book">House cleaning<span>from $129</span></a>
-<a class="svc" href="#book">Car detailing<span>from $59</span></a>
-<a class="svc" href="#book">Furniture assembly<span>from $59</span></a>
-<a class="svc" href="#book">Lawn care<span>from $49</span></a>
-<a class="svc" href="#book">Garage cleanout<span>from $149</span></a>
-<a class="svc" href="#book">TV mounting<span>from $99</span></a>
-<a class="svc" href="#book">Wi-Fi and cabling<span>from $79</span></a>
-<a class="svc" href="#book">Handyman repairs<span>from $75/hr</span></a>
+<a class="svc" href="customer-home.html">House cleaning<span>from $129</span></a>
+<a class="svc" href="customer-home.html">Car detailing<span>from $59</span></a>
+<a class="svc" href="customer-home.html">Furniture assembly<span>from $59</span></a>
+<a class="svc" href="customer-home.html">Lawn care<span>from $49</span></a>
+<a class="svc" href="customer-home.html">Garage cleanout<span>from $149</span></a>
+<a class="svc" href="customer-home.html">TV mounting<span>from $99</span></a>
+<a class="svc" href="customer-home.html">Wi-Fi and cabling<span>from $79</span></a>
+<a class="svc" href="customer-home.html">Handyman repairs<span>from $75/hr</span></a>
 </div>
 </section>
 <section id="partner" class="wrap" style="padding-bottom: 72px">
@@ -130,5 +130,33 @@ a{color:#35204F}a:hover{color:#1E1030}
 </footer>
 </div>
 
+<script>
+(function () {
+  var box, timer;
+  function toast(text) {
+    if (!box) {
+      box = document.createElement('div');
+      box.setAttribute('role', 'status');
+      box.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);max-width:320px;padding:12px 18px;border-radius:14px;background:#1B0E2B;color:#fff;font:600 14px Figtree,system-ui,sans-serif;text-align:center;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,.35);transition:opacity .2s';
+      document.body.appendChild(box);
+    }
+    box.textContent = text;
+    box.style.opacity = '1';
+    clearTimeout(timer);
+    timer = setTimeout(function () { box.style.opacity = '0'; }, 1800);
+  }
+  document.addEventListener('click', function (ev) {
+    var el = ev.target.closest('a,button');
+    if (!el || el.dataset.live) return;
+    if (el.tagName === 'A') {
+      var href = el.getAttribute('href') || '';
+      if (href.charAt(0) !== '#') return;
+      if (href.length > 1 && document.getElementById(href.slice(1))) return;
+      ev.preventDefault();
+    }
+    toast('Not part of this prototype yet');
+  });
+})();
+</script>
 </body>
 </html>

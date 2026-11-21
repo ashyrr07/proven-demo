@@ -67,6 +67,61 @@ a{color:#35204F}a:hover{color:#1E1030}
 <a href="#problem" style="min-height: 44px; display: flex; align-items: center; font-weight: 600; font-size: 14.5px">Report a problem with this job</a>
 </div>
 </div>
-<script>(function(){var b=document.querySelector('button.sun');if(!b)return;b.addEventListener('click',function(){b.textContent='Paid, thank you';b.disabled=true;b.style.background='#35204F';b.style.color='#fff';b.style.boxShadow='0 5px 0 #1E1030';var r=document.querySelectorAll('.st');var last=r[r.length-1];if(last){last.lastElementChild.textContent='Paid just now'}});})();</script>
+<script>
+(function () {
+  var order = null;
+  try { order = JSON.parse(sessionStorage.getItem('provenOrder')); } catch (e) {}
+  var pay = document.querySelector('button.sun');
+  if (!pay) return;
+  if (order) {
+    var title = document.querySelector('h1');
+    var amount = '$' + order.price + '.00';
+    title.textContent = order.name;
+    title.nextElementSibling.textContent = 'Order PR-10482: ' + order.detail;
+    pay.textContent = 'Pay ' + amount;
+    var total = pay.previousElementSibling.querySelector('b');
+    if (total) total.textContent = amount;
+  }
+  pay.dataset.live = '1';
+  pay.addEventListener('click', function () {
+    pay.textContent = 'Paid, thank you';
+    pay.disabled = true;
+    pay.style.background = '#35204F';
+    pay.style.color = '#fff';
+    pay.style.boxShadow = '0 5px 0 #1E1030';
+    var rows = document.querySelectorAll('.st');
+    var last = rows[rows.length - 1];
+    if (last) last.lastElementChild.textContent = 'Paid just now';
+  });
+})();
+</script>
+<script>
+(function () {
+  var box, timer;
+  function toast(text) {
+    if (!box) {
+      box = document.createElement('div');
+      box.setAttribute('role', 'status');
+      box.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);max-width:320px;padding:12px 18px;border-radius:14px;background:#1B0E2B;color:#fff;font:600 14px Figtree,system-ui,sans-serif;text-align:center;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,.35);transition:opacity .2s';
+      document.body.appendChild(box);
+    }
+    box.textContent = text;
+    box.style.opacity = '1';
+    clearTimeout(timer);
+    timer = setTimeout(function () { box.style.opacity = '0'; }, 1800);
+  }
+  document.addEventListener('click', function (ev) {
+    var el = ev.target.closest('a,button');
+    if (!el || el.dataset.live) return;
+    if (el.tagName === 'A') {
+      var href = el.getAttribute('href') || '';
+      if (href.charAt(0) !== '#') return;
+      if (href.length > 1 && document.getElementById(href.slice(1))) return;
+      ev.preventDefault();
+    }
+    toast('Not part of this prototype yet');
+  });
+})();
+</script>
 </body>
 </html>
