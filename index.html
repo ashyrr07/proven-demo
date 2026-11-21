@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Proven prototype</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500..800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2A1740;--violet:#4B2A7A;--sun:#FFC233;--paper:#F5F2F8;--muted:#5E5270;--line:#DDD3E8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Figtree,system-ui,sans-serif;font-size:17px;line-height:1.5}
+.h{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;letter-spacing:-.03em;line-height:1;margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-left:24px;padding-right:24px}
+a{color:var(--ink)}
+.top{background:var(--sun);overflow:hidden}
+.top .wrap{position:relative;padding-top:22px;padding-bottom:64px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.pill{padding:8px 16px;border-radius:999px;background:var(--ink);color:#fff;font-weight:600;font-size:14px}
+.top h1{font-size:clamp(2.6rem,6vw,5rem);max-width:13em;margin-top:56px;padding-right:230px}
+.top p{max-width:36rem;font-size:1.15rem;margin:22px 0 0}
+.coin{position:absolute;right:24px;top:120px;width:190px;height:190px;border-radius:50%;background:var(--violet);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 0 #3A1F61,0 8px 0 #3A1F61,0 12px 0 #2E174F,0 16px 0 #2E174F,0 44px 44px -8px rgba(60,30,0,.45);animation:thunk .8s cubic-bezier(.2,.9,.3,1.2) .3s both}
+@keyframes thunk{0%{transform:rotate(-34deg) scale(2.4);opacity:0}55%{transform:rotate(-9deg) scale(.9);opacity:1}100%{transform:rotate(-12deg) scale(1);opacity:1}}
+section{padding:72px 0 0}
+.row{display:flex;flex-wrap:wrap;align-items:center;gap:48px}
+.row.flip{flex-direction:row-reverse}
+.side{flex:1 1 340px;display:flex;flex-direction:column;gap:18px}
+.side h2{font-size:clamp(2rem,4vw,3rem)}
+.side p{margin:0;color:var(--muted)}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;counter-reset:s}
+.steps a{counter-increment:s;display:flex;align-items:center;gap:14px;min-height:48px;padding:0 16px;border-radius:16px;background:#fff;color:var(--ink);font-weight:600;text-decoration:none;box-shadow:0 3px 0 var(--line)}
+.steps a::before{content:counter(s);flex:0 0 28px;height:28px;border-radius:50%;background:var(--paper);display:flex;align-items:center;justify-content:center;font-size:14px}
+.steps a.on{background:var(--sun);box-shadow:0 3px 0 #D99A0B}
+.steps a.on::before{background:var(--ink);color:#fff}
+.steps a:focus-visible,.open:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
+.open{align-self:flex-start;display:inline-flex;align-items:center;min-height:48px;padding:0 20px;border-radius:16px;background:var(--ink);color:#fff;font-weight:700;text-decoration:none;box-shadow:0 4px 0 #120820}
+.phone{flex:0 0 auto;padding:12px;border-radius:56px;background:#1B0E2B;box-shadow:0 14px 0 #120820,0 44px 60px -24px rgba(42,23,64,.55)}
+.phone iframe{display:block;width:390px;height:844px;border:0;border-radius:44px;background:var(--paper)}
+.browser{border-radius:26px;background:#1B0E2B;padding:12px;box-shadow:0 14px 0 #120820,0 44px 60px -24px rgba(42,23,64,.55);margin-top:28px}
+.dots{display:flex;gap:7px;padding:4px 8px 12px}
+.dots i{width:11px;height:11px;border-radius:50%;background:#4B2A7A}
+.dots i:first-child{background:var(--sun)}
+.scale{position:relative;overflow:hidden;border-radius:16px;background:var(--paper)}
+.scale iframe{display:block;border:0;width:1440px;transform-origin:0 0}
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px}
+.head h2{font-size:clamp(2rem,4vw,3rem)}
+.head p{margin:8px 0 0;color:var(--muted);max-width:40rem}
+.links{display:flex;flex-wrap:wrap;gap:10px}
+.links a{display:inline-flex;align-items:center;min-height:48px;padding:0 18px;border-radius:16px;background:#fff;color:var(--ink);font-weight:600;text-decoration:none;box-shadow:0 3px 0 var(--line)}
+footer{padding:64px 0 48px;color:var(--muted);font-size:15px}
+@media (max-width:860px){
+  .phone,.browser{display:none}
+  .top h1{padding-right:0}
+  .coin{position:static;margin-top:36px;width:130px;height:130px}
+  .coin svg{width:104px;height:104px}
+  .top .wrap{padding-bottom:44px}
+  section{padding-top:52px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+<div class="wrap">
+<div class="bar"><span class="h" style="font-size:30px">Proven</span><span class="pill">Clickable prototype</span></div>
+<h1 class="h">Only proven pros come to your door.</h1>
+<p>Walk through the customer app, the pro app, the admin panel and the website. Everything here is sample data. Nothing is sent or saved.</p>
+<div class="coin"><svg width="156" height="156" viewBox="0 0 108 108" role="img" aria-label="Proven seal"><defs><path id="arc" d="M18 54a36 36 0 0 1 72 0"/></defs><circle cx="54" cy="54" r="50" fill="none" stroke="#FFC233" stroke-width="2.5"/><circle cx="54" cy="54" r="27" fill="#FFC233"/><text font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="13.5" letter-spacing="4.5" fill="#fff"><textPath href="#arc" startOffset="50%" text-anchor="middle">PROVEN</textPath></text><path d="M42 55l8.5 8.5L67 46" fill="none" stroke="#35204F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M34 86a40 40 0 0 0 40 0" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>
+</div>
+</header>
+<main>
+<section class="wrap">
+<div class="row">
+<div class="phone"><iframe id="customer" src="customer-welcome.html" title="Customer app prototype"></iframe></div>
+<div class="side">
+<h2 class="h">Customer app</h2>
+<p>The customer signs in with Apple or Google, confirms the address on a map and sends a request. They never choose or vet a contractor. Tap through the phone, or jump to a screen.</p>
+<ol class="steps" data-frame="customer">
+<li><a href="customer-welcome.html">Welcome and sign in</a></li>
+<li><a href="customer-details.html">Your details</a></li>
+<li><a href="customer-location.html">Allow location</a></li>
+<li><a href="customer-address.html">Address on the map</a></li>
+<li><a href="customer-home.html">Home</a></li>
+<li><a href="customer-request.html">Request a service</a></li>
+<li><a href="customer-matching.html">Finding a pro</a></li>
+<li><a href="customer-status.html">Order status and payment</a></li>
+</ol>
+<a class="open" href="customer-welcome.html" target="_blank" rel="noopener">Open the customer app full screen</a>
+</div>
+</div>
+</section>
+<section class="wrap">
+<div class="row flip">
+<div class="phone"><iframe id="pro" src="pro-sign-in.html" title="Pro app prototype"></iframe></div>
+<div class="side">
+<h2 class="h">Pro app</h2>
+<p>Contractors cannot sign up by themselves. Every request goes to all vetted pros nearby, and the first to accept gets the job, with a route in Google Maps or Apple Maps.</p>
+<ol class="steps" data-frame="pro">
+<li><a href="pro-sign-in.html">Sign in</a></li>
+<li><a href="pro-new-job.html">New job, first to accept</a></li>
+<li><a href="pro-accepted-job.html">Accepted job and route</a></li>
+<li><a href="pro-earnings.html">Jobs and earnings</a></li>
+</ol>
+<a class="open" href="pro-sign-in.html" target="_blank" rel="noopener">Open the pro app full screen</a>
+</div>
+</div>
+</section>
+<section class="wrap">
+<div class="head">
+<div><h2 class="h">Admin panel</h2><p>Staff add and vet every contractor here, watch requests that nobody accepted, and step in when a call is overdue.</p></div>
+<div class="links"><a href="admin-dispatch.html" target="_blank" rel="noopener">Open dispatch</a><a href="admin-add-contractor.html" target="_blank" rel="noopener">Open add a contractor</a></div>
+</div>
+<div class="browser"><div class="dots"><i></i><i></i><i></i></div><div class="scale" data-h="1040"><iframe src="admin-dispatch.html" title="Admin panel prototype" height="1040"></iframe></div></div>
+</section>
+<section class="wrap">
+<div class="head">
+<div><h2 class="h">Website</h2><p>The public page explains the five checks and takes orders from the browser.</p></div>
+<div class="links"><a href="website.html" target="_blank" rel="noopener">Open the website</a></div>
+</div>
+<div class="browser"><div class="dots"><i></i><i></i><i></i></div><div class="scale" data-h="1180"><iframe src="website.html" title="Website prototype" height="1180"></iframe></div></div>
+</section>
+</main>
+<footer class="wrap">Proven is a working name. This is a design prototype with sample data, not a live service.</footer>
+<script>
+(function () {
+  var wide = window.matchMedia('(min-width: 861px)');
+  document.querySelectorAll('.steps').forEach(function (list) {
+    var frame = document.getElementById(list.dataset.frame);
+    var links = list.querySelectorAll('a');
+    function mark() {
+      var here;
+      try { here = frame.contentWindow.location.pathname.split('/').pop(); } catch (e) { return; }
+      links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === here); });
+    }
+    frame.addEventListener('load', mark);
+    links.forEach(function (a) {
+      a.addEventListener('click', function (ev) {
+        if (!wide.matches) return;
+        ev.preventDefault();
+        frame.src = a.getAttribute('href');
+      });
+    });
+  });
+  function fit() {
+    document.querySelectorAll('.scale').forEach(function (box) {
+      var s = box.clientWidth / 1440;
+      box.firstElementChild.style.transform = 'scale(' + s + ')';
+      box.style.height = Math.round(box.dataset.h * s) + 'px';
+    });
+  }
+  window.addEventListener('resize', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

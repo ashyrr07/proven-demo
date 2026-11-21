@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390">
+<meta name="robots" content="noindex">
+<title>Proven prototype: Finding a pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500..800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#FFC233}a:hover{color:#FFD569}
+.scr{width:390px;height:844px;box-sizing:border-box;position:relative;overflow:hidden;display:flex;flex-direction:column;background:#35204F;color:#fff;font-family:Figtree,system-ui,sans-serif;font-size:15px;line-height:1.4}
+.h{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;letter-spacing:-.025em;line-height:1.04;margin:0}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 22px;box-sizing:border-box;border:0;border-radius:18px;font:700 17px Figtree,sans-serif;text-decoration:none}
+.sun{background:#FFC233;color:#35204F;box-shadow:0 5px 0 #B77F00}
+.btn.sun:hover{color:#35204F}
+.radar{position:relative;width:320px;height:320px;align-self:center;border-radius:50%;background:#432A63}
+.rg{position:absolute;border-radius:50%;border:1.5px solid #6B4E91}
+.sweep{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(255,194,51,0) 0deg,rgba(255,194,51,0) 290deg,rgba(255,194,51,.55) 360deg);animation:spin 3.2s linear infinite}
+.pro{position:absolute;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:#fff;box-shadow:0 0 0 5px rgba(255,255,255,.18);animation:blip 3.2s ease-in-out infinite}
+.wave{position:absolute;left:50%;top:50%;width:80px;height:80px;margin:-40px 0 0 -40px;border-radius:50%;border:2px solid #FFC233;animation:ping 2.6s ease-out infinite}
+.dots span{display:inline-block;width:7px;height:7px;margin-left:5px;border-radius:50%;background:#FFC233;animation:hop 1.2s ease-in-out infinite}
+.row{display:flex;align-items:center;gap:12px;font-size:15.5px}
+.ok{width:26px;height:26px;border-radius:50%;background:#FFC233;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes ping{0%{transform:scale(.5);opacity:.9}100%{transform:scale(4);opacity:0}}
+@keyframes blip{0%,100%{transform:scale(1);background:#fff}50%{transform:scale(1.45);background:#FFC233}}
+@keyframes hop{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(-5px);opacity:1}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<style>html{background:#1B0E2B}body{margin:0;min-height:100vh;display:flex;justify-content:center;align-items:flex-start}</style>
+</head>
+<body>
+<div class="scr">
+<div style="padding: 22px 24px 0 24px; display: flex; flex-direction: column; gap: 22px; flex-grow: 1">
+<div class="radar" role="img" aria-label="Five pros near you are being notified">
+<div class="rg" style="inset: 40px"></div>
+<div class="rg" style="inset: 90px"></div>
+<div class="sweep"></div>
+<div class="wave"></div>
+<div class="wave" style="animation-delay: 1.3s"></div>
+<div class="pro" style="left: 74px; top: 96px; animation-delay: .2s"></div>
+<div class="pro" style="left: 236px; top: 70px; animation-delay: .9s"></div>
+<div class="pro" style="left: 262px; top: 196px; animation-delay: 1.5s"></div>
+<div class="pro" style="left: 150px; top: 262px; animation-delay: 2.1s"></div>
+<div class="pro" style="left: 58px; top: 208px; animation-delay: 2.7s"></div>
+<div style="position: absolute; left: 50%; top: 50%; width: 54px; height: 54px; margin: -27px 0 0 -27px; border-radius: 50%; background: #FFC233; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 0 #B77F00">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#35204F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h1 class="h" style="font-size: 38px">Finding your pro</h1>
+<p style="margin: 0; font-size: 16.5px; color: #DCCFEA">Your request went to 5 proven pros near you. The first one to accept takes the job.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px; padding: 18px; border-radius: 22px; background: #432A63">
+<div class="row"><span class="ok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#35204F" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>Request sent at 9:12 AM</span></div>
+<div class="row"><span class="ok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#35204F" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>5 pros notified</span></div>
+<div class="row"><span style="width: 26px; height: 26px; box-sizing: border-box; border-radius: 50%; border: 2px dashed #FFC233; flex-shrink: 0"></span><span>Waiting for the first accept<span class="dots" aria-hidden="true"><span></span><span style="animation-delay: .15s"></span><span style="animation-delay: .3s"></span></span></span></div>
+</div>
+<p style="margin: 0; font-size: 13.5px; color: #DCCFEA">You can close the app. We send a notification as soon as a pro accepts.</p>
+</div>
+<div style="padding: 14px 24px 18px 24px; display: flex; flex-direction: column; gap: 6px; align-items: center">
+<a class="btn sun" href="customer-status.html" style="align-self: stretch">See order status</a>
+<a href="customer-home.html" style="min-height: 44px; display: flex; align-items: center; font-weight: 600">Cancel request</a>
+</div>
+</div>
+<script>setTimeout(function(){location.href='customer-status.html'},7000)</script>
+</body>
+</html>

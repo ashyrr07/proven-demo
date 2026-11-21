@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Proven prototype: Admin: dispatch</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500..800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#35204F}a:hover{color:#1E1030}
+.pg{display:flex;flex-wrap:wrap;min-height:1040px;background:#F5F2F8;color:#35204F;font-family:Figtree,system-ui,sans-serif;font-size:15px;line-height:1.4}
+.h{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;letter-spacing:-.025em;line-height:1.05;margin:0}
+.m{color:#5E5270}
+.side{flex:1 0 230px;box-sizing:border-box;padding:24px 16px;background:#2A1740;color:#fff;display:flex;flex-direction:column;gap:4px}
+.side a{min-height:44px;display:flex;align-items:center;padding:0 14px;border-radius:14px;color:#DCCFEA;font-weight:500;text-decoration:none}
+.side a.on{background:#FFC233;color:#35204F;font-weight:700}
+.main{flex:999 1 560px;min-width:0;box-sizing:border-box;padding:28px 32px;display:flex;flex-direction:column;gap:20px}
+.kpi{flex:1 1 170px;padding:16px 18px;border-radius:22px;background:#fff;box-shadow:0 4px 0 #DDD3E8}
+.kpi b{display:block;font:800 32px 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em}
+.kpi.hot{background:#FFC233;box-shadow:0 4px 0 #D99A0B}
+.panel{padding:22px;border-radius:26px;background:#fff}
+table{border-collapse:collapse;width:100%;min-width:820px}
+th{text-align:left;font-weight:600;font-size:13px;color:#5E5270;padding:10px 12px;border-bottom:1.5px solid #E7DFF0;white-space:nowrap}
+td{padding:12px;border-bottom:1.5px solid #F0EAF5;vertical-align:middle}
+.tag{display:inline-block;padding:5px 11px;border-radius:999px;font-weight:600;font-size:13px;background:#E7DFF0;white-space:nowrap}
+.tag.warn{background:#FFC233}
+.tag.dark{background:#35204F;color:#fff}
+.act{min-height:44px;padding:0 16px;border:0;border-radius:14px;background:#F5F2F8;color:#35204F;font:600 14px Figtree,sans-serif;box-shadow:0 3px 0 #DDD3E8;white-space:nowrap}
+.act.go{background:#35204F;color:#fff;box-shadow:0 3px 0 #1E1030}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#FFC233;margin-right:8px;animation:beat 1.2s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.7);opacity:.5}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+
+</head>
+<body>
+<div class="pg">
+<nav class="side" aria-label="Admin">
+<div class="h" style="font-size: 24px; padding: 0 14px 18px 14px">Proven admin</div>
+<a class="on" href="#dispatch">Dispatch</a>
+<a href="admin-add-contractor.html">Contractors</a>
+<a href="#customers">Customers</a>
+<a href="#payments">Payments and payouts</a>
+<a href="#disputes">Disputes</a>
+<a href="#catalog">Services and prices</a>
+<a href="#markets">Cities and states</a>
+<a href="#team">Team and roles</a>
+</nav>
+<main class="main">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px">
+<div>
+<h1 class="h" style="font-size: 36px">Dispatch</h1>
+<div class="m" style="margin-top: 4px">Dallas–Fort Worth, Monday, Nov 23. Sample data.</div>
+</div>
+<a class="act go" href="admin-add-contractor.html" style="display: flex; align-items: center; text-decoration: none">Add a contractor</a>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 14px">
+<div class="kpi"><span class="m">Open requests</span><b>37</b><span class="m" style="font-size: 13px">5 waiting for an accept</span></div>
+<div class="kpi"><span class="m">Time to first accept</span><b>6 min</b><span class="m" style="font-size: 13px">median today</span></div>
+<div class="kpi hot"><span>No accept after 30 min</span><b>2</b><span style="font-size: 13px; font-weight: 600">assign by hand</span></div>
+<div class="kpi hot"><span>Call overdue, 24 h</span><b>3</b><span style="font-size: 13px; font-weight: 600">reassign or chase</span></div>
+<div class="kpi"><span class="m">Proven revenue, week</span><b>$7,318</b><span class="m" style="font-size: 13px">20% of $36,590</span></div>
+</div>
+<section class="panel">
+<h2 class="h" style="font-size: 22px; margin-bottom: 8px">Live requests</h2>
+<div style="overflow-x: auto">
+<table>
+<thead><tr><th>Order</th><th>Service</th><th>Area</th><th>Sent to</th><th>Status</th><th>Waiting</th><th>Action</th></tr></thead>
+<tbody>
+<tr><td>PR-10485</td><td>House cleaning</td><td>Plano</td><td>7 pros</td><td><span class="tag"><span class="dot"></span>Waiting for first accept</span></td><td>12 min</td><td><button class="act">Widen the area</button></td></tr>
+<tr><td>PR-10480</td><td>TV mounting</td><td>Irving</td><td>3 pros</td><td><span class="tag warn">Nobody accepted</span></td><td><b>34 min</b></td><td><button class="act go">Assign a pro</button></td></tr>
+<tr><td>PR-10482</td><td>Car detailing</td><td>East Dallas</td><td>5 pros</td><td><span class="tag">Accepted by Shine Mobile Detail</span></td><td>4 min to accept</td><td><button class="act">View</button></td></tr>
+<tr><td>PR-10477</td><td>Lawn care</td><td>Frisco</td><td>6 pros</td><td><span class="tag warn">Accepted, no call yet</span></td><td><b>26 h</b></td><td><button class="act go">Reassign</button></td></tr>
+<tr><td>PR-10469</td><td>Car detailing</td><td>Uptown</td><td>5 pros</td><td><span class="tag dark">Dispute opened</span></td><td>1 day</td><td><button class="act">Open case</button></td></tr>
+<tr><td>PR-10471</td><td>Furniture assembly</td><td>Richardson</td><td>4 pros</td><td><span class="tag">Job done, payment due</span></td><td>2 h</td><td><button class="act">View</button></td></tr>
+</tbody>
+</table>
+</div>
+<p class="m" style="margin: 12px 0 0 0; font-size: 13.5px">Only staff see which contractor took a job. Customers see "a proven pro" and an arrival code.</p>
+</section>
+<section class="panel">
+<h2 class="h" style="font-size: 22px; margin-bottom: 8px">Who gets a request</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 14px">
+<div style="flex: 1 1 220px"><b>1. Service match</b><div class="m" style="font-size: 14px">Contractors approved for that service.</div></div>
+<div style="flex: 1 1 220px"><b>2. Inside their area</b><div class="m" style="font-size: 14px">The job is within the radius set on their account.</div></div>
+<div style="flex: 1 1 220px"><b>3. In good standing</b><div class="m" style="font-size: 14px">Checks current, rating 4.7 or higher.</div></div>
+<div style="flex: 1 1 220px"><b>4. First accept wins</b><div class="m" style="font-size: 14px">The job closes for everyone else at once.</div></div>
+</div>
+</section>
+</main>
+</div>
+
+</body>
+</html>
